@@ -4,6 +4,7 @@ import sys
 from sklearn.feature_extraction.text import CountVectorizer
 
 
+
 # Loading the saved model
 loaded_model = pickle.load(open('C:/Users/abhis/OneDrive/Desktop/UsingSpawn/logreg_model.pkl', 'rb'))
 

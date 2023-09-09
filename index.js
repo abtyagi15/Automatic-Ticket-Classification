@@ -8,11 +8,17 @@ const filePath = path.join(__dirname, "classify.py");
 // Define the Python script and its arguments
 const pythonScript = filePath;
 
+app.use(express.json());
 // Define a route for making predictions
-app.get("/predict", (req, res) => {
-  const inputJson = JSON.stringify({
-    text: "On [Date], I noticed an unauthorized transaction of [Amount] from my savings account ([Account Number: XXXX-XXXX-XXXX-XXXX]). I immediately contacted your customer support hotline to report the issue and request assistance in resolving this matter. To my dismay, my experience with your customer service was far from satisfactory.",
-  }); // Replace with your input data
+app.post("/predict", (req, res) => {
+
+  // Get the input data from the request body 
+  // const inputJson = JSON.stringify(req.body);
+  const  data = req.body;
+
+  const inputJson = JSON.stringify(data); // Replace with your input data
+
+  console.log("This is sent by postman",data);
 
   // Spawn the Python child process
   const pythonProcess = spawn("python", [pythonScript, inputJson]);
